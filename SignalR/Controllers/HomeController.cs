@@ -1,16 +1,27 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using SignalR.Hubs;
 using SignalR.Models;
 
 namespace SignalR.Controllers;
 
-public class HomeController : Controller
+public class HomeController(IHubContext<DeathlyHallowsHub> hubContext) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public async Task<IActionResult> DeathlyHallows(string type)
     {
-        _logger = logger;
+        if (SD.DealthyHallowRace.ContainsKey(type))
+        {
+            SD.DealthyHallowRace[type]++;
+        }
+        
+        await hubContext.Clients.All.SendAsync("UpdateDealthyHallowCount",
+            SD.DealthyHallowRace[SD.Cloak],
+            SD.DealthyHallowRace[SD.Stone],
+            SD.DealthyHallowRace[SD.Wand]);
+        
+        
+        return Accepted();
     }
 
     public IActionResult Index()

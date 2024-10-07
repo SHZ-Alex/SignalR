@@ -40,7 +40,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
 app.MapHub<UserHub>("/hubs/userCount");
+app.MapHub<DeathlyHallowsHub>("hubs/deathyHallows");
 
 app.MapControllerRoute(
     name: "default",
