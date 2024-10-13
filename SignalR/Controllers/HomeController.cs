@@ -15,7 +15,7 @@ public class HomeController(IHubContext<DeathlyHallowsHub> hubContext) : Control
             SD.DealthyHallowRace[type]++;
         }
         
-        await hubContext.Clients.All.SendAsync("UpdateDealthyHallowCount",
+        await hubContext.Clients.All.SendAsync("UpdateDeathlyHallowCount",
             SD.DealthyHallowRace[SD.Cloak],
             SD.DealthyHallowRace[SD.Stone],
             SD.DealthyHallowRace[SD.Wand]);

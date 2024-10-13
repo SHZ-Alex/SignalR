@@ -42,7 +42,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapHub<UserHub>("/hubs/userCount");
-app.MapHub<DeathlyHallowsHub>("hubs/deathyHallows");
+app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
 
 app.MapControllerRoute(
     name: "default",
