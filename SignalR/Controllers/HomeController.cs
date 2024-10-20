@@ -29,7 +29,7 @@ public class HomeController(IHubContext<DeathlyHallowsHub> hubContext) : Control
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Notification()
     {
         return View();
     }
