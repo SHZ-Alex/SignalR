@@ -3,9 +3,9 @@ let stoneSpan = document.getElementById("stoneCounter");
 let wandSpan = document.getElementById("wandCounter");
 
 const connectionDeathlyHallows = new signalR.HubConnectionBuilder()
-    .withUrl("/hubs/deathlyHallows", signalR.HttpTransportType.ServerSentEvents).build();
+    .withUrl("/hubs/voting", signalR.HttpTransportType.ServerSentEvents).build();
 
-connectionDeathlyHallows.on("UpdateDeathlyHallowCount", (cloak, stone, wand) => {
+connectionDeathlyHallows.on("UpdateVotingCount", (cloak, stone, wand) => {
     cloakSpan.innerText = cloak.toString();
     stoneSpan.innerText = stone.toString();
     wandSpan.innerText = wand.toString();

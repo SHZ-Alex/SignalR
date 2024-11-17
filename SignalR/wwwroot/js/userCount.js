@@ -1,6 +1,7 @@
 //create connection
 
 const connectionUserCount = new signalR.HubConnectionBuilder()
+    .withAutomaticReconnect()
     .withUrl("/hubs/userCount", signalR.HttpTransportType.WebSockets)
     .build();
 
@@ -16,16 +17,22 @@ connectionUserCount.on("UpdateTotalUsers", (value) => {
     newCountSpan.innerText = value.toString();
 });
 
+connectionUserCount.onclose((error) => {
+    document.body.style.background = "red";
+});
+connectionUserCount.onreconnected((connectionId) => {
+    document.body.style.background = "white";
+});
+connectionUserCount.onreconnecting((error) => {
+    document.body.style.background = "orange";
+});
 
 
-//invoke hub methods aka send notification to hub
 function newWindowLoadedOnClient() {
     connectionUserCount.invoke("NewWindowLoaded", "SHZ")
         .then((value) => console.log(value));
 }
 
-
-//start connection
 function fulfilled() {
     console.log("Connection to User Hub Successful");
     newWindowLoadedOnClient();
@@ -33,7 +40,5 @@ function fulfilled() {
 
 
 
-function rejected() {
-    //rejected logs
-}
+function rejected() {}
 connectionUserCount.start().then(fulfilled, rejected);

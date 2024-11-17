@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.SignalR;
+using SignalR.Cache;
 
 namespace SignalR.Hubs;
 
-public class DeathlyHallowsHub : Hub
+public class VotingHub : Hub
 {
     public Dictionary<string,int> GetRaceStatus()
     {
-        return SD.DealthyHallowRace;
+        return LocalDatabase.Voting;
     }
 }

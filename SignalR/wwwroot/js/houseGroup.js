@@ -21,116 +21,116 @@ connectionHouse.on("subscriptionStatus", (strGroupsJoined, houseName, hasSubscri
     lbl_houseJoined.innerText = strGroupsJoined;
     if (hasSubscribed) {
         switch (houseName) {
-            case 'slytherin':
+            case 'слизерин':
                 btn_slytherin.style.display = "none";
                 btn_un_slytherin.style.display = "";
                 break;
-            case 'gryffindor':
+            case 'грифиндор':
                 btn_gryffindor.style.display = "none";
                 btn_un_gryffindor.style.display = "";
                 break;
-            case 'hufflepuff':
+            case 'хафлпаф':
                 btn_hufflepuff.style.display = "none";
                 btn_un_hufflepuff.style.display = "";
                 break;
-            case 'ravenclaw':
+            case 'равенкло':
                 btn_ravenclaw.style.display = "none";
                 btn_un_ravenclaw.style.display = "";
                 break;
             default:
                 break;
         }
-        toastr.success(`You have Subscribed Successfully. ${houseName}`);
+        toastr.success(`Вы подписались. ${houseName}`);
     }
     else {
         switch (houseName) {
-            case 'slytherin':
+            case 'слизерин':
                 btn_slytherin.style.display = "";
                 btn_un_slytherin.style.display = "none";
                 break;
-            case 'gryffindor':
+            case 'грифиндор':
                 btn_gryffindor.style.display = "";
                 btn_un_gryffindor.style.display = "none";
                 break;
-            case 'hufflepuff':
+            case 'хафлпаф':
                 btn_hufflepuff.style.display = "";
                 btn_un_hufflepuff.style.display = "none";
                 break;
-            case 'ravenclaw':
+            case 'равенкло':
                 btn_ravenclaw.style.display = "";
                 btn_un_ravenclaw.style.display = "none";
                 break;
             default:
                 break;
         }
-        toastr.success(`You have Unsubscribed Successfully. ${houseName}`);
+        toastr.success(`Вы отписались. ${houseName}`);
     }
 })
 
 connectionHouse.on("newMemberAddedToHouse", (houseName) => {
-    toastr.success(`Member has subscribed to ${houseName}`);
+    toastr.success(`Новый ученик в ${houseName}`);
 });
 connectionHouse.on("newMemberRemovedFromHouse", (houseName) => {
-    toastr.warning(`Member has unsubscribed from ${houseName}`);
+    toastr.warning(`Пользователь вышел из ${houseName}`);
 });
 
 btn_gryffindor.addEventListener("click", function (event) {
-    connectionHouse.send("JoinHouse", "Gryffindor");
+    connectionHouse.send("JoinHouse", "Грифиндор");
     event.preventDefault();
 });
 btn_hufflepuff.addEventListener("click", function (event) {
-    connectionHouse.send("JoinHouse", "Hufflepuff");
+    connectionHouse.send("JoinHouse", "ХафлПаф");
     event.preventDefault();
 });
 btn_ravenclaw.addEventListener("click", function (event) {
-    connectionHouse.send("JoinHouse", "Ravenclaw");
+    connectionHouse.send("JoinHouse", "Равенкло");
     event.preventDefault();
 });
 btn_slytherin.addEventListener("click", function (event) {
-    connectionHouse.send("JoinHouse", "Slytherin");
+    connectionHouse.send("JoinHouse", "Слизерин");
     event.preventDefault();
 });
 btn_un_gryffindor.addEventListener("click", function (event) {
-    connectionHouse.send("LeaveHouse", "Gryffindor");
+    connectionHouse.send("LeaveHouse", "Грифиндор");
     event.preventDefault();
 });
 btn_un_hufflepuff.addEventListener("click", function (event) {
-    connectionHouse.send("LeaveHouse", "Hufflepuff");
+    connectionHouse.send("LeaveHouse", "ХафлПаф");
     event.preventDefault();
 });
 btn_un_ravenclaw.addEventListener("click", function (event) {
-    connectionHouse.send("LeaveHouse", "Ravenclaw");
+    connectionHouse.send("LeaveHouse", "Равенкло");
     event.preventDefault();
 });
 btn_un_slytherin.addEventListener("click", function (event) {
-    connectionHouse.send("LeaveHouse", "Slytherin");
+    connectionHouse.send("LeaveHouse", "Слизерин");
     event.preventDefault();
 });
 
 trigger_gryffindor.addEventListener("click", function (event) {
-    connectionHouse.send("TriggerHouseNotify", "Gryffindor");
+    connectionHouse.send("TriggerHouseNotify", "Грифиндор");
     event.preventDefault();
 });
 trigger_hufflepuff.addEventListener("click", function (event) {
-    connectionHouse.send("TriggerHouseNotify", "Hufflepuff");
+    connectionHouse.send("TriggerHouseNotify", "ХафлПаф");
     event.preventDefault();
 });
 trigger_ravenclaw.addEventListener("click", function (event) {
-    connectionHouse.send("TriggerHouseNotify", "Ravenclaw");
+    connectionHouse.send("TriggerHouseNotify", "Равенкло");
     event.preventDefault();
 });
 trigger_slytherin.addEventListener("click", function (event) {
-    connectionHouse.send("TriggerHouseNotify", "Slytherin");
+    connectionHouse.send("TriggerHouseNotify", "Слизерин");
     event.preventDefault();
 });
 
 connectionHouse.on("triggerHouseNotification", (houseName) => {
-    toastr.success(`A new notification for ${houseName} has been launched.`);
+    toastr.success(`Новое уведомление для ${houseName} было отправленно.`);
 });
 
 
 function fulfilled() {
-    console.log("Connection to User Hub Successful");
+    console.log("Подключено успешно");
 }
 function rejected() {
 }

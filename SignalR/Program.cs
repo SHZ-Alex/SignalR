@@ -6,11 +6,12 @@ using SignalR.Hubs;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
+var connectionString = builder.Configuration
+                           .GetConnectionString("DefaultConnection") ??
                        throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(connectionString));
+    options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -43,8 +44,11 @@ app.UseAuthorization();
 
 app.MapHub<UserHub>("/hubs/userCount");
 app.MapHub<HouseGroupHub>("/hubs/houseGroup");
-app.MapHub<DeathlyHallowsHub>("/hubs/deathlyHallows");
+app.MapHub<VotingHub>("/hubs/voting");
 app.MapHub<NotificationHub>("/hubs/notification");
+app.MapHub<BasicChatHub>("/hubs/basicChat");
+app.MapHub<ChatHub>("/hubs/chat");
+app.MapHub<OrderHub>("/hubs/order");
 
 app.MapControllerRoute(
     name: "default",
